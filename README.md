@@ -4,7 +4,7 @@
 ![.NET](https://img.shields.io/badge/.NET%20Framework-4.8-blue.svg)
 ![.NET](https://img.shields.io/badge/.NET%20-8.0-blue.svg)
 
-[![Revit](https://img.shields.io/badge/Revit-2019|2020|2021|2022|2023|2024|2025|2026-lightblue.svg)](http://developer.autodesk.com/)
+[![Revit](https://img.shields.io/badge/Revit-2023|2024|2025|2026-lightblue.svg)](http://developer.autodesk.com/)
 
 # Description
 
@@ -25,10 +25,10 @@ See [step-by-step video](https://www.youtube.com/watch?v=i0LJ9JOpKMQ)
 
 ## Compile and Load on Revit
 
-1. Build the solution `DesignAutomationHandler`, compiling DesignAutomationHandler for Revit 2019 (`DesignAutomationHandler2019`), Revit 2020 (`DesignAutomationHandler2020`), Revit 2021 (`DesignAutomationHandler2021`), Revit 2022 (`DesignAutomationHandler2022`), Revit 2023 (`DesignAutomationHandler2023`), Revit 2024 (`DesignAutomationHandler2024`), Revit 2025 (`DesignAutomationHandler2025`), and Revit 2026 (`DesignAutomationHandler2026`)
-> Design Automation for Revit currently supports Revit 2019, 2020, 2021, 2022, 2023. 2024, 2025 and 2026.
+1. Build the solution `DesignAutomationHandler`, compiling DesignAutomationHandler for Revit 2023 (`DesignAutomationHandler2023`), Revit 2024 (`DesignAutomationHandler2024`), Revit 2025 (`DesignAutomationHandler2025`), and Revit 2026 (`DesignAutomationHandler2026`)
+> Design Automation for Revit currently supports Revit 2023. 2024, 2025 and 2026.
 
-2. Copy/paste the `DesignAutomationHandler.addin` into the "Addins" folder `C:\ProgramData\Autodesk\Revit\Addins\XXXX\`, where `XXXX` is the Revit version (e.g. 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026) you intend to run.
+2. Copy/paste the `DesignAutomationHandler.addin` into the "Addins" folder `C:\ProgramData\Autodesk\Revit\Addins\XXXX\`, where `XXXX` is the Revit version (e.g. 2023, 2024, 2025, 2026) you intend to run.
 
 3. Copy/paste the `.addin` file of your Design Automation for Revit plugin into the same folder `C:\ProgramData\Autodesk\Revit\Addins\XXXX\`. 
 
