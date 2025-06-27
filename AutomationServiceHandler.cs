@@ -7,11 +7,11 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-namespace DesignAutomationHandler
+namespace AutomationServiceHandler
 {
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
-    class DesignAutomationHandlerApp : IExternalCommand
+    class AutomationServiceHandlerApp : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -29,18 +29,18 @@ namespace DesignAutomationHandler
                         if (assemblyEntity == null) continue;
 
                         System.Reflection.Assembly a = System.Reflection.Assembly.LoadFile(assemblyEntity.Value);
-                        bool designAutomationBridge = false;
+                        bool automationServiceBridge = false;
                         bool revitAPIUI = false;
                         foreach (System.Reflection.AssemblyName an in a.GetReferencedAssemblies())
                         {
                             string assemblyName = an.Name;
-                            if (assemblyName == "DesignAutomationBridge")
-                                designAutomationBridge = true;
+                            if (assemblyName == "DesignAutomationBridge" || assemblyName == "AutomationServiceBridge")
+                                automationServiceBridge = true;
                             else if (assemblyName == "RevitAPIUI")
                                 revitAPIUI = true;
                         }
-                        if (designAutomationBridge && revitAPIUI)
-                            MessageBox.Show($"RevitAPIUI detected in DA Plugin: {e.Element("Assembly").Value}", "DesignAutomationHandler");
+                        if (automationServiceBridge && revitAPIUI)
+                            MessageBox.Show($"RevitAPIUI detected in DA Plugin: {e.Element("Assembly").Value}", "AutomationServiceHandler");
                     }
                     catch
                     {
@@ -59,19 +59,19 @@ namespace DesignAutomationHandler
             try
             {
                 var filename = doc?.PathName;
-                var currentdir = Directory.GetCurrentDirectory();
+                var currentDir = Directory.GetCurrentDirectory();
                 var message = string.Empty;
                 if (string.IsNullOrEmpty(filename))
                 {
-                    message = $"No input file.\nIf you have json file for parameters, now copy it under the current folder:\n{currentdir}";
-                    MessageBox.Show(message, "DesignAutomationHandler");
+                    message = $"No input file.\nIf you have json file for parameters, now copy it under the current folder:\n{currentDir}";
+                    MessageBox.Show(message, "AutomationServiceHandler");
                 }
 
-                bool designAutomationResult = DesignAutomationBridge.SetDesignAutomationReady(app, filename);
+                bool automationServiceResult = DesignAutomationBridge.SetDesignAutomationReady(app, filename);
 
-                if (designAutomationResult)
+                if (automationServiceResult)
                 {
-                    var resultFolder = string.IsNullOrEmpty(filename) ? currentdir : Path.GetDirectoryName(filename);
+                    var resultFolder = string.IsNullOrEmpty(filename) ? currentDir : Path.GetDirectoryName(filename);
                     message = $"Succeed!\nFind the results at folder: {resultFolder}";
                 }
                 else
@@ -79,12 +79,12 @@ namespace DesignAutomationHandler
                     message = $"Failed! You may debug the addin dll.";
                 }
 
-                MessageBox.Show(message, "DesignAutomationHandler");
+                MessageBox.Show(message, "AutomationServiceHandler");
 
             }
             catch (System.Exception e)
             {
-                MessageBox.Show(e.ToString(), "DesignAutomationHandler");
+                MessageBox.Show(e.ToString(), "AutomationServiceHandler");
             }
         }
     }
